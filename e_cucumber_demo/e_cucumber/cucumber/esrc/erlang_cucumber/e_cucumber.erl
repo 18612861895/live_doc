@@ -5,9 +5,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 run() ->
 	StartT = now(),
-
-	% test_outline(),
-	% test_simple(),
+	test_outline(),
+	test_simple(),
 	test_multi(),
 	EndT = now(),
 	ExecuteTime = timer:now_diff(EndT, StartT),

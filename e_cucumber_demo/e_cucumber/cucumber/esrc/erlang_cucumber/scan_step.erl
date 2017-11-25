@@ -9,12 +9,14 @@ run(AllSteps, StepDefDir) ->
 
 gen_def_steps([], _StepDefDir,_ExsitSteps, Acc) -> Acc;
 gen_def_steps([H|T], StepDefDir, ExsitSteps, Acc) ->
+	% io:format("~p~n", [ExsitSteps]),
     {obj, [_,_,{_, KeyWd}, {_, Text}]} = H,
     case is_step_exist(KeyWd, Text, ExsitSteps) of
     	no_exsit_step ->
-			DefStep=gen_default_step_def(H),
+			{NewStepRe, DefStep}=gen_default_step_def(H),
 			file:write_file(StepDefDir, DefStep, [append]),
-			gen_def_steps(T, StepDefDir, ExsitSteps, Acc ++ DefStep);
+			NewExsitSteps=update_exist_step(ExsitSteps, NewStepRe),
+			gen_def_steps(T, StepDefDir, NewExsitSteps, Acc ++ DefStep);
 		_-> gen_def_steps(T, StepDefDir, ExsitSteps, Acc)
 	end.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -44,6 +46,18 @@ get_all_exsit_steps(InputStr) ->
 	               {key_but,   "/\\* *But (.*)\\*/"}],
 	[{K, is_str_match_re(InputStr, P)} || {K, P} <- AllStepType].
 
+update_exist_step(ExsitSteps, NewStepRe) ->
+	NewStep = get_all_exsit_steps(NewStepRe),
+	add_new_step_to_exist_step(ExsitSteps,NewStep,[]).
+
+add_new_step_to_exist_step([], [], Acc) -> Acc;
+add_new_step_to_exist_step([E_H|E_T], [N_H|N_T], Acc) ->
+	NewAcc=Acc ++ gen_new_ele(E_H, N_H),
+	add_new_step_to_exist_step(E_T, N_T, NewAcc).
+gen_new_ele({K, nomatch}, {K, nomatch}) -> [{K, nomatch}];
+gen_new_ele(E, {_K, nomatch}) -> [E];
+gen_new_ele({_K, nomatch}, N) -> [N];
+gen_new_ele({K, {match, EL}}, {K, {match, NL}}) -> [{K, {match, EL++NL}}].
 
 get_step_type(_Step, [], []) -> undef_step;
 get_step_type(_Step, _REList, [{find_type, Type}]) -> Type;
@@ -58,12 +72,12 @@ get_step_type(Step, [{Type, Re}|T], _Res) ->
 
 is_step_exist(_StepKeyWord, _Step, []) -> no_exsit_step;
 is_step_exist(StepKeyWord, Step, ExsitSteps) -> 
-	KetReList = [{key_given, " *Given *"},
+	KeyReList = [{key_given, " *Given *"},
 	             {key_when, " *When *"},
 	             {key_then, " *Then *"},
 	             {key_and, " *And *"},
 	             {key_but, " *But *"}],
-	StepType = get_step_type(StepKeyWord, KetReList, []),
+	StepType = get_step_type(StepKeyWord, KeyReList, []),
 	Res = check_one_step_exsit(StepType, Step, ExsitSteps),
 	Res.
 
@@ -98,13 +112,13 @@ gen_default_step_def(Step) ->
 	% io:format("~s~n", [StepNote]),
 
 	ReplaceChar = "(" ++ get_replace_chars(SrcPara, []) ++ " |,)",
-	io:format("~p-----~p~n", [KeyWdText, ReplaceChar]),
+	% io:format("~p-----~p~n", [KeyWdText, ReplaceChar]),
 	StepFuncName = "void " ++ string:to_lower(re:replace(KeyWdText,ReplaceChar,"_",[{return,list}, global])),
 	% io:format("~s~n", [StepFuncName]),
 	StepFuncPara = gen_fuc_para(SrcPara),
 	StepFuncBody = " {\n    // Write code here that turns the phrase above into concrete actions\n    assert(0)\n}\n",
 	% io:format("~s~n", [StepFuncName ++ StepFuncPara ++ StepFuncBody]),
-	StepNote ++ StepFuncName ++ StepFuncPara ++ StepFuncBody.
+	{StepNote, StepNote ++ StepFuncName ++ StepFuncPara ++ StepFuncBody}.
 
 %%%%%%%%%%%%%%%%%%%% 从step中提取 <> int float string类型的参数
 get_step_func_para(Step) ->
