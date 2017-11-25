@@ -1,0 +1,248 @@
+{
+  "type": "gherkin-document",
+  "uri": "/home/david/code/cucumber-cpp-master/examples/Calc/features/addition.feature",
+  "document": {
+    "type": "GherkinDocument",
+    "feature": {
+      "type": "Feature",
+      "tags": [],
+      "location": {
+        "line": 2,
+        "column": 1
+      },
+      "language": "en",
+      "keyword": "Feature",
+      "name": "Addition",
+      "description": "  In order to avoid silly mistakes\n  As a math idiot \n  I want to be told the sum of two numbers",
+      "children": [
+        {
+          "type": "ScenarioOutline",
+          "tags": [],
+          "location": {
+            "line": 7,
+            "column": 3
+          },
+          "keyword": "Scenario Outline",
+          "name": "Add two numbers",
+          "steps": [
+            {
+              "type": "Step",
+              "location": {
+                "line": 8,
+                "column": 5
+              },
+              "keyword": "Given ",
+              "text": "I have entered <input_1> into the calculator"
+            },
+            {
+              "type": "Step",
+              "location": {
+                "line": 9,
+                "column": 5
+              },
+              "keyword": "And ",
+              "text": "I have entered <input_2> into the calculator"
+            },
+            {
+              "type": "Step",
+              "location": {
+                "line": 10,
+                "column": 5
+              },
+              "keyword": "When ",
+              "text": "I press <button>"
+            },
+            {
+              "type": "Step",
+              "location": {
+                "line": 11,
+                "column": 5
+              },
+              "keyword": "Then ",
+              "text": "the result should be <output> on the screen"
+            }
+          ],
+          "examples": [
+            {
+              "type": "Examples",
+              "location": {
+                "line": 13,
+                "column": 3
+              },
+              "keyword": "Examples",
+              "name": "",
+              "tags": [],
+              "tableHeader": {
+                "type": "TableRow",
+                "location": {
+                  "line": 14,
+                  "column": 5
+                },
+                "cells": [
+                  {
+                    "type": "TableCell",
+                    "location": {
+                      "line": 14,
+                      "column": 7
+                    },
+                    "value": "input_1"
+                  },
+                  {
+                    "type": "TableCell",
+                    "location": {
+                      "line": 14,
+                      "column": 17
+                    },
+                    "value": "input_2"
+                  },
+                  {
+                    "type": "TableCell",
+                    "location": {
+                      "line": 14,
+                      "column": 27
+                    },
+                    "value": "button"
+                  },
+                  {
+                    "type": "TableCell",
+                    "location": {
+                      "line": 14,
+                      "column": 36
+                    },
+                    "value": "output"
+                  }
+                ]
+              },
+              "tableBody": [
+                {
+                  "type": "TableRow",
+                  "location": {
+                    "line": 15,
+                    "column": 5
+                  },
+                  "cells": [
+                    {
+                      "type": "TableCell",
+                      "location": {
+                        "line": 15,
+                        "column": 7
+                      },
+                      "value": "20"
+                    },
+                    {
+                      "type": "TableCell",
+                      "location": {
+                        "line": 15,
+                        "column": 17
+                      },
+                      "value": "30"
+                    },
+                    {
+                      "type": "TableCell",
+                      "location": {
+                        "line": 15,
+                        "column": 27
+                      },
+                      "value": "add"
+                    },
+                    {
+                      "type": "TableCell",
+                      "location": {
+                        "line": 15,
+                        "column": 36
+                      },
+                      "value": "50"
+                    }
+                  ]
+                },
+                {
+                  "type": "TableRow",
+                  "location": {
+                    "line": 16,
+                    "column": 5
+                  },
+                  "cells": [
+                    {
+                      "type": "TableCell",
+                      "location": {
+                        "line": 16,
+                        "column": 7
+                      },
+                      "value": "2"
+                    },
+                    {
+                      "type": "TableCell",
+                      "location": {
+                        "line": 16,
+                        "column": 17
+                      },
+                      "value": "5"
+                    },
+                    {
+                      "type": "TableCell",
+                      "location": {
+                        "line": 16,
+                        "column": 27
+                      },
+                      "value": "add"
+                    },
+                    {
+                      "type": "TableCell",
+                      "location": {
+                        "line": 16,
+                        "column": 36
+                      },
+                      "value": "7"
+                    }
+                  ]
+                },
+                {
+                  "type": "TableRow",
+                  "location": {
+                    "line": 17,
+                    "column": 5
+                  },
+                  "cells": [
+                    {
+                      "type": "TableCell",
+                      "location": {
+                        "line": 17,
+                        "column": 7
+                      },
+                      "value": "0"
+                    },
+                    {
+                      "type": "TableCell",
+                      "location": {
+                        "line": 17,
+                        "column": 17
+                      },
+                      "value": "40"
+                    },
+                    {
+                      "type": "TableCell",
+                      "location": {
+                        "line": 17,
+                        "column": 27
+                      },
+                      "value": "add"
+                    },
+                    {
+                      "type": "TableCell",
+                      "location": {
+                        "line": 17,
+                        "column": 36
+                      },
+                      "value": "40"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "comments": []
+  }
+}

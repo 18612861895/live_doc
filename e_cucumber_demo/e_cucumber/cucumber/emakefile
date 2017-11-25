@@ -1,0 +1,1 @@
+{['esrc/parse_jason_lib/*', 'esrc/erlang_cucumber/*'], [{outdir, "ebin"}]}.

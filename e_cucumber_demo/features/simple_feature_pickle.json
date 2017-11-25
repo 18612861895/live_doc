@@ -1,0 +1,47 @@
+{
+  "type": "pickle",
+  "uri": "/home/david/my_cucumber_code/test_feature/ex/adding.feature",
+  "pickle": {
+    "language": "en",
+    "name": "Add two numbers",
+    "locations": [
+      {
+        "line": 3,
+        "column": 3
+      }
+    ],
+    "tags": [],
+    "steps": [
+      {
+        "locations": [
+          {
+            "line": 4,
+            "column": 11
+          }
+        ],
+        "arguments": [],
+        "text": "the input \"2+2\""
+      },
+      {
+        "locations": [
+          {
+            "line": 5,
+            "column": 10
+          }
+        ],
+        "arguments": [],
+        "text": "the calculator is run"
+      },
+      {
+        "locations": [
+          {
+            "line": 6,
+            "column": 10
+          }
+        ],
+        "arguments": [],
+        "text": "the output should be \"4\""
+      }
+    ]
+  }
+}
