@@ -8,6 +8,7 @@ run() ->
 	test_outline(),
 	test_simple(),
 	test_multi(),
+	test_background(),
 	EndT = now(),
 	ExecuteTime = timer:now_diff(EndT, StartT),
 	print_cucumber_excute_result(ExecuteTime),
@@ -40,6 +41,17 @@ test_multi() ->
 	%% mmetadata dir
     GherkinDocJsonDir = "./../../features/change_pin_feature_doc.json",
     StepDefDir = "./../../features/step_definitions/change_pin_feature_doc.c",
+
+    %% scan 
+	AllSteps    = scan_gherkin_doc_json:run(GherkinDocJsonDir),	
+	NotExistStep=scan_step:run(AllSteps, StepDefDir),
+	print_not_exsit_step(NotExistStep),	
+	ok.
+
+test_background() ->
+	%% mmetadata dir
+    GherkinDocJsonDir = "./../../features/change_pin_bg_feature_doc.json",
+    StepDefDir = "./../../features/step_definitions/change_pin_bg_feature_doc.c",
 
     %% scan 
 	AllSteps    = scan_gherkin_doc_json:run(GherkinDocJsonDir),	

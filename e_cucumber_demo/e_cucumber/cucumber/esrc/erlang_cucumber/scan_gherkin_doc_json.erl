@@ -54,6 +54,11 @@ do_parse_feature_child_json({obj, [{"type", <<"ScenarioOutline">>}, {"tags", _},
 	parse_feature_json(Loc, KeyWord, Name, Steps),
 	parse_examples_json(Exmp),
 	Steps;
+do_parse_feature_child_json({obj, [{"type",  <<"Background">>},
+	                                {"location", Loc}, {"keyword", KeyWord}, 
+	                                {"name", Name}, {"steps", Steps}]=_ChildObjList})->
+	parse_feature_json(Loc, KeyWord, Name, Steps),
+	Steps;
 do_parse_feature_child_json({obj, [{"type",  <<"Scenario">>}, {"tags", _},
 	                                {"location", Loc}, {"keyword", KeyWord}, 
 	                                {"name", Name}, {"steps", Steps}]=_ChildObjList})->
