@@ -6,12 +6,12 @@ void given_i_have_been_issued_a_new_card(void) {
 }
 
 /*And I insert the card, entering the crroect PIN*/
-void and_i_insert_the_card,_entering_the_crroect_pin(void) {
+void and_i_insert_the_card__entering_the_crroect_pin(void) {
     // Write code here that turns the phrase above into concrete actions
     assert(0)
 }
 
-/*When I choose ("\w+\+*\**  *\w*") from menu*/
+/*When I choose ("\w+\+*\** *\w*") from menu*/
 void when_i_choose_from_menu(char para1[100]) {
     // Write code here that turns the phrase above into concrete actions
     assert(0)
@@ -36,12 +36,12 @@ void given_i_have_been_issued_a_new_card(void) {
 }
 
 /*And I insert the card, entering the crroect PIN*/
-void and_i_insert_the_card,_entering_the_crroect_pin(void) {
+void and_i_insert_the_card__entering_the_crroect_pin(void) {
     // Write code here that turns the phrase above into concrete actions
     assert(0)
 }
 
-/*When I choose ("\w+\+*\**  *\w*") from menu*/
+/*When I choose ("\w+\+*\** *\w*") from menu*/
 void when_i_choose_from_menu(char para1[100]) {
     // Write code here that turns the phrase above into concrete actions
     assert(0)

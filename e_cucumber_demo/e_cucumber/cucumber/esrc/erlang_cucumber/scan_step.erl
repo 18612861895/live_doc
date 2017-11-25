@@ -97,14 +97,22 @@ gen_default_step_def(Step) ->
 	StepNote = gen_step_note(KeyWdText, SrcPara),
 	% io:format("~s~n", [StepNote]),
 
-	ReplaceChar = "(" ++ get_replace_chars(SrcPara, []) ++ " )",
-	% io:format("~p-----~p~n", [KeyWdText, ReplaceChar]),
+	ReplaceChar = "(" ++ get_replace_chars(SrcPara, []) ++ " |,)",
+	io:format("~p-----~p~n", [KeyWdText, ReplaceChar]),
 	StepFuncName = "void " ++ string:to_lower(re:replace(KeyWdText,ReplaceChar,"_",[{return,list}, global])),
 	% io:format("~s~n", [StepFuncName]),
 	StepFuncPara = gen_fuc_para(SrcPara),
 	StepFuncBody = " {\n    // Write code here that turns the phrase above into concrete actions\n    assert(0)\n}\n",
 	% io:format("~s~n", [StepFuncName ++ StepFuncPara ++ StepFuncBody]),
 	StepNote ++ StepFuncName ++ StepFuncPara ++ StepFuncBody.
+
+%%%%%%%%%%%%%%%%%%%% 从step中提取 <> int float string类型的参数
+get_step_func_para(Step) ->
+	StepParaTypeRes = [{outline_para, "( *<\\w+> *)"},
+	                   {int_para,    "( +\\d+ *)"},
+	                   {float_para,  "( +\\d+\\.\\d+ *)"},
+	                   {string_para, "( +\"\\w+\\+*\\** *\\w*\" *)"}],
+	do_get_step_para(Step, StepParaTypeRes, []).
 
 do_get_step_para(_Step, [], []) -> no_para;
 do_get_step_para(_Step, [], Res) -> 
@@ -118,13 +126,38 @@ do_get_step_para(Step, [{K,V}|T], Res) ->
 	end,
 	do_get_step_para(Step,T,NewR).
 
-get_step_func_para(Step) ->
-	StepParaTypeRes = [{outline_para, "( *<\\w+> *)"},
-	                   {int_para,    "( +\\d+ *)"},
-	                   {float_para,  "( +\\d+\\.\\d+ *)"},
-	                   {string_para, "( +\"\\w+\\+* \\** *\\w*\" *)"}],
-	do_get_step_para(Step, StepParaTypeRes, []).
+%%%%%%%%%%%%%%%%%%%% 产生step C函数的注释的正则表达式
+gen_step_note(KeyWdText, SrcPara) ->
+	% io:format("~p---~p~n",[KeyWdText, SrcPara]),
+	NewKwt = do_gen_step_note(SrcPara, KeyWdText),
+	% io:format("===============================~p~n",[NewKwt]),
+	"\n/*" ++ NewKwt ++"*/\n".
 
+do_gen_step_note(no_para, Acc) -> Acc;
+do_gen_step_note([], Acc) -> Acc;
+
+do_gen_step_note([{string_para, V}|T], Acc) ->
+	V1=re:replace(V , "(\\+)", "\\\\+", [{return,list}, global]),
+	V2=re:replace(V1 , "(\\*)", "\\\\*", [{return,list}, global]),
+	RPL = "(\"" ++ "\\\\w+" ++ "\\\\+*" ++ "\\\\**" ++" *"++ "\\\\w*" ++ "\")",
+	NewV=string:strip(V2, both, $ ),
+	NewAcc=re:replace(Acc, NewV, RPL,[{return,list}, global]),
+	% io:format("ppppppppppppppppppppp~p ~p~n", [Acc, NewAcc]),
+	do_gen_step_note(T, NewAcc);
+
+do_gen_step_note([{int_para, V}|T], Acc) -> 
+	RPL = "(\\\\d+)",
+	NewV=string:strip(V, both, $ ),
+	NewAcc=re:replace(Acc, NewV, RPL,[{return,list}, global]),
+	do_gen_step_note(T, NewAcc);
+do_gen_step_note([{float_para, V}|T], Acc) -> 
+	RPL = "(\\\\d+\\\\.+\\\\d+)",
+	NewV=string:strip(V, both, $ ),
+	NewAcc=re:replace(Acc, NewV, RPL,[{return,list}, global]),
+	do_gen_step_note(T, NewAcc);
+do_gen_step_note([{_K, _V}|T], Acc) -> do_gen_step_note(T, Acc).
+
+%%%%%%%%%%%%%%%%%%%% 产生函数名的时候需要将 参数替换成空格
 get_replace_chars(no_para, _) -> "";
 get_replace_chars([], Res) -> Res;
 get_replace_chars([{_K,V}|T], Res) ->
@@ -132,6 +165,7 @@ get_replace_chars([{_K,V}|T], Res) ->
 	V2=re:replace(V1 , "(\\*)", "\\\\*", [{return,list}, global]),
 	get_replace_chars(T, Res ++ V2 ++ "|").
 
+%%%%%%%%%%%%%%%%%%%% 从step 的C函数的函数的入参
 gen_fuc_para(no_para) -> "(void)";
 gen_fuc_para(SrcPara) -> 
 	Paras = [gen_one_para(I, length(SrcPara), lists:nth(I, SrcPara)) || I<-lists:seq(1, length(SrcPara))],
@@ -159,33 +193,7 @@ gen_one_para(Id, Len, {string_para, _V}) ->
 		_ -> "char para" ++ integer_to_list(Id) ++ "[100]" ++ ", "
 	end.
 
-gen_step_note(KeyWdText, SrcPara) ->
-	% io:format("~p---~p~n",[KeyWdText, SrcPara]),
-	NewKwt = do_gen_step_note(SrcPara, KeyWdText),
-	% io:format("===============================~p~n",[NewKwt]),
-	"\n/*" ++ NewKwt ++"*/\n".
 
-do_gen_step_note(no_para, Acc) -> Acc;
-do_gen_step_note([], Acc) -> Acc;
-do_gen_step_note([{string_para, V}|T], Acc) ->
-	V1=re:replace(V , "(\\+)", "\\\\+", [{return,list}, global]),
-	V2=re:replace(V1 , "(\\*)", "\\\\*", [{return,list}, global]),
-	RPL = "(\"" ++ "\\\\w+" ++ "\\\\+*" ++ "\\\\**" ++"  *"++ "\\\\w*" ++ "\")",
-	NewV=string:strip(V2, both, $ ),
-	NewAcc=re:replace(Acc, NewV, RPL,[{return,list}, global]),
-	% io:format("ppppppppppppppppppppp~p ~p~n", [Acc, NewAcc]),
-	do_gen_step_note(T, NewAcc);
-do_gen_step_note([{int_para, V}|T], Acc) -> 
-	RPL = "(\\\\d+)",
-	NewV=string:strip(V, both, $ ),
-	NewAcc=re:replace(Acc, NewV, RPL,[{return,list}, global]),
-	do_gen_step_note(T, NewAcc);
-do_gen_step_note([{float_para, V}|T], Acc) -> 
-	RPL = "(\\\\d+\\\\.+\\\\d+)",
-	NewV=string:strip(V, both, $ ),
-	NewAcc=re:replace(Acc, NewV, RPL,[{return,list}, global]),
-	do_gen_step_note(T, NewAcc);
-do_gen_step_note([{_K, _V}|T], Acc) -> do_gen_step_note(T, Acc).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 test_step_is_def() ->
 	FileDir = "./../../features/step_definitions/add_steps.c",

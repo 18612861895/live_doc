@@ -1,6 +1,6 @@
 
-/*Given the input "2+2" */
-void given_the_input_"2+2"_(void) {
+/*Given the input ("\w+\+*\** *\w*") */
+void given_the_input_(char para1[100]) {
     // Write code here that turns the phrase above into concrete actions
     assert(0)
 }
@@ -11,26 +11,8 @@ void when_the_calculator_is_run(void) {
     assert(0)
 }
 
-/*Then the output should be "4" */
-void then_the_output_should_be_"4"_(void) {
-    // Write code here that turns the phrase above into concrete actions
-    assert(0)
-}
-
-/*Given the input "2+2" */
-void given_the_input_"2+2"_(void) {
-    // Write code here that turns the phrase above into concrete actions
-    assert(0)
-}
-
-/*Given the input "2+2" */
-void given_the_input_"2+2"_(void) {
-    // Write code here that turns the phrase above into concrete actions
-    assert(0)
-}
-
-/*Given the input "2+2" */
-void given_the_input_"2+2"_(void) {
+/*Then the output should be ("\w+\+*\** *\w*") */
+void then_the_output_should_be_(char para1[100]) {
     // Write code here that turns the phrase above into concrete actions
     assert(0)
 }
