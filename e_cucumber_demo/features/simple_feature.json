@@ -1,0 +1,163 @@
+{
+  "type": "source",
+  "media": {
+    "encoding": "utf-8",
+    "type": "text/vnd.cucumber.gherkin+plain"
+  },
+  "uri": "/home/david/my_cucumber_code/test_feature/ex/adding.feature",
+  "data": "Feature: Adding\n\n  Scenario: Add two numbers\n    Given the input \"2+2\"\n    When the calculator is run\n    Then the output should be \"4\""
+}
+{
+  "type": "gherkin-document",
+  "uri": "/home/david/my_cucumber_code/test_feature/ex/adding.feature",
+  "document": {
+    "type": "GherkinDocument",
+    "feature": {
+      "type": "Feature",
+      "tags": [],
+      "location": {
+        "line": 1,
+        "column": 1
+      },
+      "language": "en",
+      "keyword": "Feature",
+      "name": "Adding",
+      "children": [
+        {
+          "type": "Scenario",
+          "tags": [],
+          "location": {
+            "line": 3,
+            "column": 3
+          },
+          "keyword": "Scenario",
+          "name": "Add two numbers",
+          "steps": [
+            {
+              "type": "Step",
+              "location": {
+                "line": 4,
+                "column": 5
+              },
+              "keyword": "Given ",
+              "text": "the input \"2+2\" "
+            },
+            {
+              "type": "Step",
+              "location": {
+                "line": 5,
+                "column": 5
+              },
+              "keyword": "When ",
+              "text": "the calculator is run"
+            },
+            {
+              "type": "Step",
+              "location": {
+                "line": 6,
+                "column": 5
+              },
+              "keyword": "Then ",
+              "text": "the output should be \"4\" "
+            }
+          ]
+        }
+      ]
+    },
+    "comments": []
+  }
+}
+{
+  "type": "pickle",
+  "uri": "/home/david/my_cucumber_code/test_feature/ex/adding.feature",
+  "pickle": {
+    "language": "en",
+    "name": "Add two numbers",
+    "locations": [
+      {
+        "line": 3,
+        "column": 3
+      }
+    ],
+    "tags": [],
+    "steps": [
+      {
+        "locations": [
+          {
+            "line": 4,
+            "column": 11
+          }
+        ],
+        "arguments": [],
+        "text": "the input \"2+2\""
+      },
+      {
+        "locations": [
+          {
+            "line": 5,
+            "column": 10
+          }
+        ],
+        "arguments": [],
+        "text": "the calculator is run"
+      },
+      {
+        "locations": [
+          {
+            "line": 6,
+            "column": 10
+          }
+        ],
+        "arguments": [],
+        "text": "the output should be \"4\""
+      }
+    ]
+  }
+}
+{
+  "type": "pickle",
+  "uri": "/home/david/my_cucumber_code/test_feature/ex/adding.feature",
+  "pickle": {
+    "language": "en",
+    "name": "Add two numbers",
+    "locations": [
+      {
+        "line": 3,
+        "column": 3
+      }
+    ],
+    "tags": [],
+    "steps": [
+      {
+        "locations": [
+          {
+            "line": 4,
+            "column": 11
+          }
+        ],
+        "arguments": [],
+        "text": "the input \"2+2\""
+      },
+      {
+        "locations": [
+          {
+            "line": 5,
+            "column": 10
+          }
+        ],
+        "arguments": [],
+        "text": "the calculator is run"
+      },
+      {
+        "locations": [
+          {
+            "line": 6,
+            "column": 10
+          }
+        ],
+        "arguments": [],
+        "text": "the output should be \"4\""
+      }
+    ]
+  }
+}

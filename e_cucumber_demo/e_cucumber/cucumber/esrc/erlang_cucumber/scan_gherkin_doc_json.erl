@@ -1,10 +1,10 @@
 -module(scan_gherkin_doc_json).
 -include("e_cucumber_utility.hrl").
 -compile(export_all).
--import(e_cucumber_uitility, [load_json_obj/1, get_loc/1, print_line_no/2, print_n_space/1]).
+-import(e_cucumber_uitility, [get_loc/1, print_line_no/2, print_n_space/1]).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       1. run      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-run(GherkinDocJsonDir) ->
-	DocObj = load_json_obj(GherkinDocJsonDir),
+run(DocObj) ->
+	% DocObj = load_json_obj(GherkinDocJsonDir),
 	{AllSteps,AllParseRes} = parse_doc_json(DocObj),
 	% io:format("~p~n", [AllParseRes]),
 	{AllSteps,AllParseRes}.

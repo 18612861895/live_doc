@@ -4,8 +4,22 @@
 
 load_json_obj(Dir) ->
 	{ok, Bin} = file:read_file(Dir),
-	{ok, Obj, []} = rfc4627:decode(Bin),
+	{ok, Obj, _Remain} = rfc4627:decode(Bin),
+	% io:format("Remain ~n~p~n",[Remain]),
 	Obj.
+
+load_json_all_objs(Dir) ->
+	{ok, Bin} = file:read_file(Dir),
+	do_load_json_all_objs(Bin,[]).
+do_load_json_all_objs([], Acc) -> Acc;	
+do_load_json_all_objs(Bin, Acc) ->
+	{ok, {obj, [{"type", Type}|_T]}=Obj, Remain} = rfc4627:decode(Bin),
+	NewAcc=case lists:keyfind(Type, 1, Acc) of
+		false -> Acc ++ [{Type,[Obj]}];
+		{Type, OldList} -> 
+		lists:keyreplace(Type,1,Acc, {Type,OldList++[Obj]})
+	end,
+	do_load_json_all_objs(Remain, NewAcc).
 
 get_loc(Loc) ->
 	{obj,[{"line", Line}, {"column", Col}]} = Loc,

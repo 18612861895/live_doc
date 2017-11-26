@@ -17,8 +17,8 @@ void when_i_choose_from_menu(char para1[100]) {
     assert(0)
 }
 
-/*And I change the PIN to (\d+)*/
-void and_i_change_the_pin_to_(int para1) {
+/*When I change the PIN to (\d+)*/
+void when_i_change_the_pin_to_(int para1) {
     // Write code here that turns the phrase above into concrete actions
     assert(0)
 }
@@ -29,8 +29,8 @@ void then_the_system_should_rember_my_new_pin_(int para1) {
     assert(0)
 }
 
-/*And I change the PIN to the original PIN number*/
-void and_i_change_the_pin_to_the_original_pin_number(void) {
+/*When I change the PIN to the original PIN number*/
+void when_i_change_the_pin_to_the_original_pin_number(void) {
     // Write code here that turns the phrase above into concrete actions
     assert(0)
 }

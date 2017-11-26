@@ -1,4 +1,13 @@
 {
+  "type": "source",
+  "media": {
+    "encoding": "utf-8",
+    "type": "text/vnd.cucumber.gherkin+plain"
+  },
+  "uri": "/home/david/code/cucumber-cpp-master/examples/Calc/features/addition.feature",
+  "data": "# language: en\nFeature: Addition\n  In order to avoid silly mistakes\n  As a math idiot \n  I want to be told the sum of two numbers\n\n  Scenario Outline: Add two numbers\n    Given I have entered <input_1> into the calculator\n    And I have entered <input_2> into the calculator\n    When I press <button>\n    Then the result should be <output> on the screen\n\n  Examples:\n    | input_1 | input_2 | button | output |\n    | 20      | 30      | add    | 50     |\n    | 2       | 5       | add    | 7      |\n    | 0       | 40      | add    | 40     |\n"
+}
+{
   "type": "gherkin-document",
   "uri": "/home/david/code/cucumber-cpp-master/examples/Calc/features/addition.feature",
   "document": {
@@ -244,5 +253,237 @@
       ]
     },
     "comments": []
+  }
+}
+
+{
+  "type": "pickle",
+  "uri": "/home/david/code/cucumber-cpp-master/examples/Calc/features/addition.feature",
+  "pickle": {
+    "language": "en",
+    "name": "Add two numbers",
+    "locations": [
+      {
+        "line": 15,
+        "column": 5
+      },
+      {
+        "line": 7,
+        "column": 3
+      }
+    ],
+    "tags": [],
+    "steps": [
+      {
+        "locations": [
+          {
+            "line": 15,
+            "column": 5
+          },
+          {
+            "line": 8,
+            "column": 11
+          }
+        ],
+        "arguments": [],
+        "text": "I have entered 20 into the calculator"
+      },
+      {
+        "locations": [
+          {
+            "line": 15,
+            "column": 5
+          },
+          {
+            "line": 9,
+            "column": 9
+          }
+        ],
+        "arguments": [],
+        "text": "I have entered 30 into the calculator"
+      },
+      {
+        "locations": [
+          {
+            "line": 15,
+            "column": 5
+          },
+          {
+            "line": 10,
+            "column": 10
+          }
+        ],
+        "arguments": [],
+        "text": "I press add"
+      },
+      {
+        "locations": [
+          {
+            "line": 15,
+            "column": 5
+          },
+          {
+            "line": 11,
+            "column": 10
+          }
+        ],
+        "arguments": [],
+        "text": "the result should be 50 on the screen"
+      }
+    ]
+  }
+}
+{
+  "type": "pickle",
+  "uri": "/home/david/code/cucumber-cpp-master/examples/Calc/features/addition.feature",
+  "pickle": {
+    "language": "en",
+    "name": "Add two numbers",
+    "locations": [
+      {
+        "line": 16,
+        "column": 5
+      },
+      {
+        "line": 7,
+        "column": 3
+      }
+    ],
+    "tags": [],
+    "steps": [
+      {
+        "locations": [
+          {
+            "line": 16,
+            "column": 5
+          },
+          {
+            "line": 8,
+            "column": 11
+          }
+        ],
+        "arguments": [],
+        "text": "I have entered 2 into the calculator"
+      },
+      {
+        "locations": [
+          {
+            "line": 16,
+            "column": 5
+          },
+          {
+            "line": 9,
+            "column": 9
+          }
+        ],
+        "arguments": [],
+        "text": "I have entered 5 into the calculator"
+      },
+      {
+        "locations": [
+          {
+            "line": 16,
+            "column": 5
+          },
+          {
+            "line": 10,
+            "column": 10
+          }
+        ],
+        "arguments": [],
+        "text": "I press add"
+      },
+      {
+        "locations": [
+          {
+            "line": 16,
+            "column": 5
+          },
+          {
+            "line": 11,
+            "column": 10
+          }
+        ],
+        "arguments": [],
+        "text": "the result should be 7 on the screen"
+      }
+    ]
+  }
+}
+{
+  "type": "pickle",
+  "uri": "/home/david/code/cucumber-cpp-master/examples/Calc/features/addition.feature",
+  "pickle": {
+    "language": "en",
+    "name": "Add two numbers",
+    "locations": [
+      {
+        "line": 17,
+        "column": 5
+      },
+      {
+        "line": 7,
+        "column": 3
+      }
+    ],
+    "tags": [],
+    "steps": [
+      {
+        "locations": [
+          {
+            "line": 17,
+            "column": 5
+          },
+          {
+            "line": 8,
+            "column": 11
+          }
+        ],
+        "arguments": [],
+        "text": "I have entered 0 into the calculator"
+      },
+      {
+        "locations": [
+          {
+            "line": 17,
+            "column": 5
+          },
+          {
+            "line": 9,
+            "column": 9
+          }
+        ],
+        "arguments": [],
+        "text": "I have entered 40 into the calculator"
+      },
+      {
+        "locations": [
+          {
+            "line": 17,
+            "column": 5
+          },
+          {
+            "line": 10,
+            "column": 10
+          }
+        ],
+        "arguments": [],
+        "text": "I press add"
+      },
+      {
+        "locations": [
+          {
+            "line": 17,
+            "column": 5
+          },
+          {
+            "line": 11,
+            "column": 10
+          }
+        ],
+        "arguments": [],
+        "text": "the result should be 40 on the screen"
+      }
+    ]
   }
 }

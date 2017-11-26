@@ -1,9 +1,0 @@
-{
-  "type": "source",
-  "media": {
-    "encoding": "utf-8",
-    "type": "text/vnd.cucumber.gherkin+plain"
-  },
-  "uri": "./add/features/a.feature",
-  "data": "# language: en\nFeature: Change Pin\n  In order to avoid silly mistakes\n  As a math idiot \n  I want to be told the sum of two numbers\n\n  Background:\n    Given I have been issued a new card \n    And I insert the card, entering the crroect PIN\n    When I choose \"Change Pin\" from menu   \n\n  Scenario: Change Pin Successfully\n    When I change the PIN to 9876 \n    Then the system should rember my new PIN 9876 \n\n  Scenario: Try to Change PIN as before\n    When I change the PIN to the original PIN number \n    Then I should see a warning msg\n    And The system not change my PIN \n"
-}

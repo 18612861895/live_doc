@@ -1,9 +1,0 @@
-{
-  "type": "source",
-  "media": {
-    "encoding": "utf-8",
-    "type": "text/vnd.cucumber.gherkin+plain"
-  },
-  "uri": "./ruby/features/data_list.feature",
-  "data": "Feature:\n  this is a data list demo\n  Scenario:Data List Demo\n    Given these usesers:\n      | name | date of birth | \n      | TOM  | Aug 29, 1958  | \n      | JIM  | Aug 29, 1958  |\n      | LILY | Aug 29, 1958  |  \n    When i select \"tom\"\n    And  i press \"show\" button\n    Then the shuld see:\n      | name | date of birth | \n      | TOM  | Aug 29, 1958  | \n"
-}

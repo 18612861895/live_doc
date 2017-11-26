@@ -1,9 +1,0 @@
-{
-  "type": "source",
-  "media": {
-    "encoding": "utf-8",
-    "type": "text/vnd.cucumber.gherkin+plain"
-  },
-  "uri": "/home/david/code/cucumber-cpp-master/examples/Calc/features/addition.feature",
-  "data": "# language: en\nFeature: Addition\n  In order to avoid silly mistakes\n  As a math idiot \n  I want to be told the sum of two numbers\n\n  Scenario Outline: Add two numbers\n    Given I have entered <input_1> into the calculator\n    And I have entered <input_2> into the calculator\n    When I press <button>\n    Then the result should be <output> on the screen\n\n  Examples:\n    | input_1 | input_2 | button | output |\n    | 20      | 30      | add    | 50     |\n    | 2       | 5       | add    | 7      |\n    | 0       | 40      | add    | 40     |\n"
-}
