@@ -5,11 +5,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 run() ->
 	StartT = now(),
-	% test_outline(),
-	% test_simple(),
-	% test_multi(),
-	% test_background(),
+	test_outline(),
+	test_simple(),
+	test_multi(),
+	test_background(),
 	test_data_list(),
+	test_tic_tac_toe(),
 	EndT = now(),
 	ExecuteTime = timer:now_diff(EndT, StartT),
 	print_cucumber_excute_result(ExecuteTime),
@@ -63,6 +64,17 @@ test_data_list() ->
 	%% mmetadata dir
     GherkinDocJsonDir = "./../../features/data_list_feature_doc.json",
     StepDefDir = "./../../features/step_definitions/data_list_feature_doc.c",
+
+    %% scan 
+	{AllSteps,AllParseRes} = scan_gherkin_doc_json:run(GherkinDocJsonDir),	
+	NotExistStep=scan_step:run({AllSteps,AllParseRes}, StepDefDir),
+	print_not_exsit_step(NotExistStep),	
+	ok.
+
+test_tic_tac_toe() ->
+	%% mmetadata dir
+    GherkinDocJsonDir = "./../../features/tic_tac_toe_feature_doc.json",
+    StepDefDir = "./../../features/step_definitions/tic_tac_toe_feature_doc.c",
 
     %% scan 
 	{AllSteps,AllParseRes} = scan_gherkin_doc_json:run(GherkinDocJsonDir),	

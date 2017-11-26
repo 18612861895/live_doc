@@ -6,7 +6,7 @@
 run(GherkinDocJsonDir) ->
 	DocObj = load_json_obj(GherkinDocJsonDir),
 	{AllSteps,AllParseRes} = parse_doc_json(DocObj),
-	io:format("~p~n", [AllParseRes]),
+	% io:format("~p~n", [AllParseRes]),
 	{AllSteps,AllParseRes}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2. parse_doc_json %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

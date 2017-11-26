@@ -53,6 +53,7 @@ update_exist_step(ExsitSteps, NewStepRe) ->
 	add_new_step_to_exist_step(ExsitSteps,NewStep,[]).
 
 add_new_step_to_exist_step([], [], Acc) -> Acc;
+add_new_step_to_exist_step([], _, Acc) -> Acc;
 add_new_step_to_exist_step([E_H|E_T], [N_H|N_T], Acc) ->
 	NewAcc=Acc ++ gen_new_ele(E_H, N_H),
 	add_new_step_to_exist_step(E_T, N_T, NewAcc).
