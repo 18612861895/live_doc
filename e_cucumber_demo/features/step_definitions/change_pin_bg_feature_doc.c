@@ -1,5 +1,3 @@
-
-
 /*Given I have been issued a new card*/
 void given_i_have_been_issued_a_new_card(void) {
     // Write code here that turns the phrase above into concrete actions

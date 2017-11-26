@@ -1,0 +1,9 @@
+{
+  "type": "source",
+  "media": {
+    "encoding": "utf-8",
+    "type": "text/vnd.cucumber.gherkin+plain"
+  },
+  "uri": "./ruby/features/tic_tac_toe.feature",
+  "data": "Feature:\n  this is a chess game\n  Scenario:Play Demo\n    Given a board like this:\n      |   | 1 | 2 | 3 |\n      | 1 |   |   |   |\n      | 2 |   |   |   |\n      | 3 |   |   |   |\n    When player x plays in row 2, column 1\n    Then the board should look like this:\n      |   | 1 | 2 | 3 |\n      | 1 |   |   |   |\n      | 2 | x |   |   |\n      | 3 |   |   |   |\n\n"
+}

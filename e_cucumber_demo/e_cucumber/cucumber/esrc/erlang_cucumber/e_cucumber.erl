@@ -5,10 +5,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 run() ->
 	StartT = now(),
-	test_outline(),
-	test_simple(),
-	test_multi(),
-	test_background(),
+	% test_outline(),
+	% test_simple(),
+	% test_multi(),
+	% test_background(),
+	test_data_list(),
 	EndT = now(),
 	ExecuteTime = timer:now_diff(EndT, StartT),
 	print_cucumber_excute_result(ExecuteTime),
@@ -21,8 +22,8 @@ test_simple() ->
     StepDefDir = "./../../features/step_definitions/simple_feature_steps.c",
 
     %% scan 
-	AllSteps    = scan_gherkin_doc_json:run(GherkinDocJsonDir),	
-	NotExistStep=scan_step:run(AllSteps, StepDefDir),
+	{AllSteps,AllParseRes} = scan_gherkin_doc_json:run(GherkinDocJsonDir),	
+	NotExistStep=scan_step:run({AllSteps,AllParseRes}, StepDefDir),
 	print_not_exsit_step(NotExistStep),	
 	ok.
 
@@ -32,8 +33,8 @@ test_outline() ->
     StepDefDir = "./../../features/step_definitions/outline_feature_steps.c",
 
     %% scan 
-	AllSteps    = scan_gherkin_doc_json:run(GherkinDocJsonDir),
-	NotExistStep=scan_step:run(AllSteps, StepDefDir),
+	{AllSteps,AllParseRes} = scan_gherkin_doc_json:run(GherkinDocJsonDir),
+	NotExistStep=scan_step:run({AllSteps,AllParseRes}, StepDefDir),
 	print_not_exsit_step(NotExistStep),	
 	ok.
 
@@ -43,8 +44,8 @@ test_multi() ->
     StepDefDir = "./../../features/step_definitions/change_pin_feature_doc.c",
 
     %% scan 
-	AllSteps    = scan_gherkin_doc_json:run(GherkinDocJsonDir),	
-	NotExistStep=scan_step:run(AllSteps, StepDefDir),
+	{AllSteps,AllParseRes} = scan_gherkin_doc_json:run(GherkinDocJsonDir),	
+	NotExistStep=scan_step:run({AllSteps,AllParseRes}, StepDefDir),
 	print_not_exsit_step(NotExistStep),	
 	ok.
 
@@ -54,8 +55,18 @@ test_background() ->
     StepDefDir = "./../../features/step_definitions/change_pin_bg_feature_doc.c",
 
     %% scan 
-	AllSteps    = scan_gherkin_doc_json:run(GherkinDocJsonDir),	
-	NotExistStep=scan_step:run(AllSteps, StepDefDir),
+	{AllSteps,AllParseRes} = scan_gherkin_doc_json:run(GherkinDocJsonDir),	
+	NotExistStep=scan_step:run({AllSteps,AllParseRes}, StepDefDir),
+	print_not_exsit_step(NotExistStep),	
+	ok.
+test_data_list() ->
+	%% mmetadata dir
+    GherkinDocJsonDir = "./../../features/data_list_feature_doc.json",
+    StepDefDir = "./../../features/step_definitions/data_list_feature_doc.c",
+
+    %% scan 
+	{AllSteps,AllParseRes} = scan_gherkin_doc_json:run(GherkinDocJsonDir),	
+	NotExistStep=scan_step:run({AllSteps,AllParseRes}, StepDefDir),
 	print_not_exsit_step(NotExistStep),	
 	ok.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

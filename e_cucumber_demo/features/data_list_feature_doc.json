@@ -1,0 +1,238 @@
+{
+  "type": "gherkin-document",
+  "uri": "./ruby/features/data_list.feature",
+  "document": {
+    "type": "GherkinDocument",
+    "feature": {
+      "type": "Feature",
+      "tags": [],
+      "location": {
+        "line": 1,
+        "column": 1
+      },
+      "language": "en",
+      "keyword": "Feature",
+      "name": "",
+      "description": "  this is a data list demo",
+      "children": [
+        {
+          "type": "Scenario",
+          "tags": [],
+          "location": {
+            "line": 3,
+            "column": 3
+          },
+          "keyword": "Scenario",
+          "name": "Data List Demo",
+          "steps": [
+            {
+              "type": "Step",
+              "location": {
+                "line": 4,
+                "column": 5
+              },
+              "keyword": "Given ",
+              "text": "these usesers:",
+              "argument": {
+                "type": "DataTable",
+                "location": {
+                  "line": 5,
+                  "column": 7
+                },
+                "rows": [
+                  {
+                    "type": "TableRow",
+                    "location": {
+                      "line": 5,
+                      "column": 7
+                    },
+                    "cells": [
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 5,
+                          "column": 9
+                        },
+                        "value": "name"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 5,
+                          "column": 16
+                        },
+                        "value": "date of birth"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableRow",
+                    "location": {
+                      "line": 6,
+                      "column": 7
+                    },
+                    "cells": [
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 6,
+                          "column": 9
+                        },
+                        "value": "TOM"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 6,
+                          "column": 16
+                        },
+                        "value": "Aug 29, 1958"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableRow",
+                    "location": {
+                      "line": 7,
+                      "column": 7
+                    },
+                    "cells": [
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 7,
+                          "column": 9
+                        },
+                        "value": "JIM"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 7,
+                          "column": 16
+                        },
+                        "value": "Aug 29, 1958"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableRow",
+                    "location": {
+                      "line": 8,
+                      "column": 7
+                    },
+                    "cells": [
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 8,
+                          "column": 9
+                        },
+                        "value": "LILY"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 8,
+                          "column": 16
+                        },
+                        "value": "Aug 29, 1958"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Step",
+              "location": {
+                "line": 9,
+                "column": 5
+              },
+              "keyword": "When ",
+              "text": "i select \"tom\""
+            },
+            {
+              "type": "Step",
+              "location": {
+                "line": 10,
+                "column": 5
+              },
+              "keyword": "And ",
+              "text": "i press \"show\" button"
+            },
+            {
+              "type": "Step",
+              "location": {
+                "line": 11,
+                "column": 5
+              },
+              "keyword": "Then ",
+              "text": "the shuld see:",
+              "argument": {
+                "type": "DataTable",
+                "location": {
+                  "line": 12,
+                  "column": 7
+                },
+                "rows": [
+                  {
+                    "type": "TableRow",
+                    "location": {
+                      "line": 12,
+                      "column": 7
+                    },
+                    "cells": [
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 12,
+                          "column": 9
+                        },
+                        "value": "name"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 12,
+                          "column": 16
+                        },
+                        "value": "date of birth"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableRow",
+                    "location": {
+                      "line": 13,
+                      "column": 7
+                    },
+                    "cells": [
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 13,
+                          "column": 9
+                        },
+                        "value": "TOM"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 13,
+                          "column": 16
+                        },
+                        "value": "Aug 29, 1958"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "comments": []
+  }
+}

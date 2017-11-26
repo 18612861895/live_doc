@@ -1,0 +1,407 @@
+{
+  "type": "gherkin-document",
+  "uri": "./ruby/features/tic_tac_toe.feature",
+  "document": {
+    "type": "GherkinDocument",
+    "feature": {
+      "type": "Feature",
+      "tags": [],
+      "location": {
+        "line": 1,
+        "column": 1
+      },
+      "language": "en",
+      "keyword": "Feature",
+      "name": "",
+      "description": "  this is a chess game",
+      "children": [
+        {
+          "type": "Scenario",
+          "tags": [],
+          "location": {
+            "line": 3,
+            "column": 3
+          },
+          "keyword": "Scenario",
+          "name": "Play Demo",
+          "steps": [
+            {
+              "type": "Step",
+              "location": {
+                "line": 4,
+                "column": 5
+              },
+              "keyword": "Given ",
+              "text": "a board like this:",
+              "argument": {
+                "type": "DataTable",
+                "location": {
+                  "line": 5,
+                  "column": 7
+                },
+                "rows": [
+                  {
+                    "type": "TableRow",
+                    "location": {
+                      "line": 5,
+                      "column": 7
+                    },
+                    "cells": [
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 5,
+                          "column": 11
+                        },
+                        "value": ""
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 5,
+                          "column": 13
+                        },
+                        "value": "1"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 5,
+                          "column": 17
+                        },
+                        "value": "2"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 5,
+                          "column": 21
+                        },
+                        "value": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableRow",
+                    "location": {
+                      "line": 6,
+                      "column": 7
+                    },
+                    "cells": [
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 6,
+                          "column": 9
+                        },
+                        "value": "1"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 6,
+                          "column": 15
+                        },
+                        "value": ""
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 6,
+                          "column": 19
+                        },
+                        "value": ""
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 6,
+                          "column": 23
+                        },
+                        "value": ""
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableRow",
+                    "location": {
+                      "line": 7,
+                      "column": 7
+                    },
+                    "cells": [
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 7,
+                          "column": 9
+                        },
+                        "value": "2"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 7,
+                          "column": 15
+                        },
+                        "value": ""
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 7,
+                          "column": 19
+                        },
+                        "value": ""
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 7,
+                          "column": 23
+                        },
+                        "value": ""
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableRow",
+                    "location": {
+                      "line": 8,
+                      "column": 7
+                    },
+                    "cells": [
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 8,
+                          "column": 9
+                        },
+                        "value": "3"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 8,
+                          "column": 15
+                        },
+                        "value": ""
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 8,
+                          "column": 19
+                        },
+                        "value": ""
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 8,
+                          "column": 23
+                        },
+                        "value": ""
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Step",
+              "location": {
+                "line": 9,
+                "column": 5
+              },
+              "keyword": "When ",
+              "text": "player x plays in row 2, column 1"
+            },
+            {
+              "type": "Step",
+              "location": {
+                "line": 10,
+                "column": 5
+              },
+              "keyword": "Then ",
+              "text": "the board should look like this:",
+              "argument": {
+                "type": "DataTable",
+                "location": {
+                  "line": 11,
+                  "column": 7
+                },
+                "rows": [
+                  {
+                    "type": "TableRow",
+                    "location": {
+                      "line": 11,
+                      "column": 7
+                    },
+                    "cells": [
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 11,
+                          "column": 11
+                        },
+                        "value": ""
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 11,
+                          "column": 13
+                        },
+                        "value": "1"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 11,
+                          "column": 17
+                        },
+                        "value": "2"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 11,
+                          "column": 21
+                        },
+                        "value": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableRow",
+                    "location": {
+                      "line": 12,
+                      "column": 7
+                    },
+                    "cells": [
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 12,
+                          "column": 9
+                        },
+                        "value": "1"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 12,
+                          "column": 15
+                        },
+                        "value": ""
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 12,
+                          "column": 19
+                        },
+                        "value": ""
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 12,
+                          "column": 23
+                        },
+                        "value": ""
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableRow",
+                    "location": {
+                      "line": 13,
+                      "column": 7
+                    },
+                    "cells": [
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 13,
+                          "column": 9
+                        },
+                        "value": "2"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 13,
+                          "column": 13
+                        },
+                        "value": "x"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 13,
+                          "column": 19
+                        },
+                        "value": ""
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 13,
+                          "column": 23
+                        },
+                        "value": ""
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableRow",
+                    "location": {
+                      "line": 14,
+                      "column": 7
+                    },
+                    "cells": [
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 14,
+                          "column": 9
+                        },
+                        "value": "3"
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 14,
+                          "column": 15
+                        },
+                        "value": ""
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 14,
+                          "column": 19
+                        },
+                        "value": ""
+                      },
+                      {
+                        "type": "TableCell",
+                        "location": {
+                          "line": 14,
+                          "column": 23
+                        },
+                        "value": ""
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "comments": []
+  }
+}

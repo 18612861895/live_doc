@@ -3,21 +3,23 @@
 -compile(export_all).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-run(AllSteps, StepDefDir) -> 
+run({AllSteps, StepDataListArgInfo}, StepDefDir) -> 
 	ExsitSteps = get_all_exsit_steps_from_file(StepDefDir),
-	gen_def_steps(AllSteps, StepDefDir, ExsitSteps, []).
+	gen_def_steps(AllSteps, StepDataListArgInfo, StepDefDir, ExsitSteps, []).
 
-gen_def_steps([], _StepDefDir,_ExsitSteps, Acc) -> Acc;
-gen_def_steps([H|T], StepDefDir, ExsitSteps, Acc) ->
+gen_def_steps([], _StepDataListArgInfo, _StepDefDir,_ExsitSteps, Acc) -> Acc;
+gen_def_steps([{obj, ObjL}=H|T], [ArgH|ArgT], StepDefDir, ExsitSteps, Acc) ->
 	% io:format("~p~n", [ExsitSteps]),
-    {obj, [_,_,{_, KeyWd}, {_, Text}]} = H,
+    % {obj, [_,_,{_, KeyWd}, {_, Text}]} = H,
+    {"keyword",KeyWd} = lists:keyfind("keyword", 1, ObjL),
+    {"text",Text} = lists:keyfind("text", 1, ObjL),
     case is_step_exist(KeyWd, Text, ExsitSteps) of
     	no_exsit_step ->
-			{NewStepRe, DefStep}=gen_default_step_def(H),
+			{NewStepRe, DefStep}=gen_default_step_def(H,ArgH),
 			file:write_file(StepDefDir, DefStep, [append]),
 			NewExsitSteps=update_exist_step(ExsitSteps, NewStepRe),
-			gen_def_steps(T, StepDefDir, NewExsitSteps, Acc ++ DefStep);
-		_-> gen_def_steps(T, StepDefDir, ExsitSteps, Acc)
+			gen_def_steps(T, ArgT, StepDefDir, NewExsitSteps, Acc ++ DefStep);
+		_-> gen_def_steps(T, ArgT, StepDefDir, ExsitSteps, Acc)
 	end.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 get_all_exsit_steps_from_file(FileDir) ->	
@@ -101,9 +103,11 @@ do_check_one_step_exsit(Step, [[H]|T], Res) ->
 	end.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-gen_default_step_def(Step) ->
+gen_default_step_def({obj, ObjL} = _Step, DataListArg) ->
 	% io:format("~p~n", [Step]),
-	{obj, [_,_,{_, KeyWd}, {_, Text}]} = Step,
+	% {obj, [_,_,{_, KeyWd}, {_, Text}]} = Step,
+	{"keyword",KeyWd} = lists:keyfind("keyword", 1, ObjL),
+    {"text",Text} = lists:keyfind("text", 1, ObjL),
 	KeyWdText=binary_to_list(KeyWd) ++ binary_to_list(Text),
 	SrcPara=get_step_func_para(KeyWdText),
 	% io:format("=====~p~n",[SrcPara]),
@@ -111,11 +115,11 @@ gen_default_step_def(Step) ->
 	StepNote = gen_step_note(KeyWdText, SrcPara),
 	% io:format("~s~n", [StepNote]),
 
-	ReplaceChar = "(" ++ get_replace_chars(SrcPara, []) ++ " |,)",
+	ReplaceChar = "(" ++ get_replace_chars(SrcPara, []) ++ " |,|:)",
 	% io:format("~p-----~p~n", [KeyWdText, ReplaceChar]),
 	StepFuncName = "void " ++ string:to_lower(re:replace(KeyWdText,ReplaceChar,"_",[{return,list}, global])),
 	% io:format("~s~n", [StepFuncName]),
-	StepFuncPara = gen_fuc_para(SrcPara),
+	StepFuncPara = gen_fuc_para(SrcPara, DataListArg),
 	StepFuncBody = " {\n    // Write code here that turns the phrase above into concrete actions\n    assert(0)\n}\n",
 	% io:format("~s~n", [StepFuncName ++ StepFuncPara ++ StepFuncBody]),
 	{StepNote, StepNote ++ StepFuncName ++ StepFuncPara ++ StepFuncBody}.
@@ -180,10 +184,20 @@ get_replace_chars([{_K,V}|T], Res) ->
 	get_replace_chars(T, Res ++ V2 ++ "|").
 
 %%%%%%%%%%%%%%%%%%%% 从step 的C函数的函数的入参
-gen_fuc_para(no_para) -> "(void)";
-gen_fuc_para(SrcPara) -> 
+gen_fuc_para(no_para, step_no_data_list_arg) -> "(void)";
+gen_fuc_para(no_para, [H|_T]=DataListArg) -> 
+	Row = length(DataListArg),
+	Col = length(tuple_to_list(H)),
+	"(char data_list[" ++ integer_to_list(Row) ++ "]["++ integer_to_list(Col)++"][50])";
+gen_fuc_para(SrcPara, step_no_data_list_arg) -> 
 	Paras = [gen_one_para(I, length(SrcPara), lists:nth(I, SrcPara)) || I<-lists:seq(1, length(SrcPara))],
-	"(" ++ Paras ++ ")".
+	"(" ++ Paras ++ ")";
+gen_fuc_para(SrcPara, [H|_T]=DataListArg) -> 
+	Paras = [gen_one_para(I, length(SrcPara), lists:nth(I, SrcPara)) || I<-lists:seq(1, length(SrcPara))],
+	Row = length(DataListArg),
+	Col = length(tuple_to_list(H)),
+	DataListPara=", char data_list[" ++ integer_to_list(Row) ++ "]["++ integer_to_list(Col)++"][50]",
+	"(" ++ Paras ++ DataListPara ++ ")".
 
 gen_one_para(Id, Len, {outline_para, V}) -> 
 	Res=re:split(V,"[<>]",[{return,list},trim]),
@@ -246,19 +260,19 @@ test_gen_default_step_def() ->
       					 {"location",{obj,[{"line",8},{"column",5}]}},
                          {"keyword",<<"Given ">>},
                          {"text",<<"I have entered <input_1> into the calculator">>}]},
-	gen_default_step_def(StepOutLine1),
+	gen_default_step_def(StepOutLine1, step_no_data_list_arg),
 
 	StepOutLine2 = 	{obj,[{"type",<<"Step">>},
       					 {"location",{obj,[{"line",8},{"column",5}]}},
                          {"keyword",<<"Given ">>},
                          {"text",<<"I a 3.345 b 2.3 c <eeee> d \"para1\" e 4 ">>}]},
-	gen_default_step_def(StepOutLine2),
+	gen_default_step_def(StepOutLine2, step_no_data_list_arg),
 
 	StepOutLine3 = 	{obj,[{"type",<<"Step">>},
       					 {"location",{obj,[{"line",8},{"column",5}]}},
                          {"keyword",<<"Given ">>},
                          {"text",<<"I press button add">>}]},
-	gen_default_step_def(StepOutLine3),
+	gen_default_step_def(StepOutLine3, step_no_data_list_arg),
 	ok.
 
 test() ->
